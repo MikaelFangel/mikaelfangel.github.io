@@ -1,20 +1,16 @@
 ---
 title: Hello World
-description: Welcome to Hugo Theme Stack
+description: Welcome to my notebook
 slug: hello-world
-date: 2022-03-06 00:00:00+0000
+date: 2023-09-19 00:00:00+0000
 image: cover.jpg
 categories:
-    - Example Category
+    - Personal
 tags:
-    - Example Tag
-weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+    - HelloWorld
+weight: 1
 ---
 
-Welcome to Hugo theme Stack. This is your first post. Edit or delete it, then start writing!
-
-For more information about this theme, check the documentation: https://stack.jimmycai.com/
-
-Want a site like this? Check out [hugo-theme-stack-stater](https://github.com/CaiJimmy/hugo-theme-stack-starter)
+Welcome to my personal blog where I share my notes on stuff I find interesting. I've created this blog to share information I find and as a way of taking notes on tehcnical topics.
 
 > Photo by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) on [Unsplash](https://unsplash.com/)

@@ -1,6 +1,6 @@
 ---
-title: Example Category
-description: A description of this category
+title: Personal
+description: Personal blog posts and posts about the blog it self.
 image:
 
 # Badge style
