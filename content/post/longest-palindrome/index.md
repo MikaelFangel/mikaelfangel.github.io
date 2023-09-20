@@ -2,7 +2,7 @@
 title: Longest Palindrome
 description: Write-up on how to find the longeste palindrome that is a subsequence of a string
 slug: longest-palindrome
-date: 2023-09-19 00:00:00+0000
+date: 2023-09-20 00:00:00+0000
 image: 
 categories:
     - Algorithms
@@ -17,7 +17,7 @@ weight: 1
 
 # Longest Palindrome
 A palindrome is a non empty string that reads the same forwards and backwards. Examples of palindromes is thus *anna*, *racecar*, *abba* and so forth.
-d
+
 ## Problem
 Find the longest palindrome which is a subsequence of a given string. To find the palindrome you are allowed to delete characters in the string.
 
