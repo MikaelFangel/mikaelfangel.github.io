@@ -14,8 +14,6 @@ tags:
 weight: 1
 ---
 
-# Defending Zion
-
 ## Problem
 
 You are given a time period of n seconds, during which waves of robots arrive. Each wave consists of Xi robots, and you have an EMP that can be used to defeat them. The EMP has a charge, denoted by the function f(j), which recharges after use. The goal is to find the optimal times to activate the EMP to maximize the total number of robots defeated over the entire period n.

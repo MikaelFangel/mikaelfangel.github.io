@@ -16,8 +16,6 @@ tags:
 weight: 1
 ---
 
-# Longest Palindromic Subsequence
-
 A palindrome is a non-empty string that exhibits symmetry when read forwards and backwards. Examples of palindromes include “anna,” “racecar,” and “abba.”
 
 ## Problem
