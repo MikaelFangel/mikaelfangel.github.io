@@ -3,7 +3,7 @@ title: Defending Zion
 description: How to solve and approach the problem of defending zion.
 slug: defending-zion
 date: 2023-09-22 00:00:00+0000
-image: 
+image: cover.jpg
 categories:
     - Algorithms
 tags:
@@ -45,3 +45,5 @@ OPT(i, j) = max(min(Xi, f(j)) + OPT(i + 1, 1), OPT(i + 1, j + 1))
 ```
 
 Here, OPT(i, j) represents the maximum number of robots defeated starting from the i'th second with EMP charge j. This recursive relation helps us find the optimal strategy for using the EMP throughout the time period.
+
+> Photo by [ANIRUDH](https://unsplash.com/@lanirudhreddy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplah](https://unsplash.com/photos/UVa6OF2XXIc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
