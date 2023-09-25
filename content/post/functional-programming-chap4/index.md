@@ -98,6 +98,26 @@ let rec sum ((p:int -> bool), (xs)) =
     | _::xs -> sum(p, xs)
 ```
 
+## 4.16
+
+```fhsarp
+f: int * int List -> int List
+g: a' * a' List -> a' * a' List
+h: a' List -> a' List
+```
+
+## 4.17
+
+```fsharp
+(a' -> bool) -> a' List -> a' List
+```
+
+## 4.18
+
+```fsharp
+(a' -> a') -> a' List -> a' List 
+```
+
  > Book by [Michael R. Hansen and Hans Richel](https://www.cambridge.org/us/universitypress/subjects/computer-science/programming-languages-and-applied-logic/functional-programming-using-f?format=HB&isbn=9781107019027)
 
  > Photo by [Ilija Boshkov](https://unsplash.com/@boshkov?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/0nI1DczRQAM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
