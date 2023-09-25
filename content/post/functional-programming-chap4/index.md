@@ -97,3 +97,5 @@ let rec sum ((p:int -> bool), (xs)) =
     | x::xs when p(x) -> x + sum(p, xs)
     | _::xs -> sum(p, xs)
 ```
+
+ > Book by [Michael R. Hansen and Hans Richel](https://www.cambridge.org/us/universitypress/subjects/computer-science/programming-languages-and-applied-logic/functional-programming-using-f?format=HB&isbn=9781107019027)
