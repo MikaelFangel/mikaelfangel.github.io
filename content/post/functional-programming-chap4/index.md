@@ -3,7 +3,7 @@ title: Solutions to Functional Programming Using F# Chap. 4
 description: My solutions to the 4th chapter of the book "Functional Programming Using F# by Michael R. Hansen and Hans Rischel"
 slug: function-programming-chap4
 date: 2023-09-23 00:00:00+0000
-image: 
+image: cover.jpg
 categories:
     - Functional Programming
 tags:
@@ -99,3 +99,6 @@ let rec sum ((p:int -> bool), (xs)) =
 ```
 
  > Book by [Michael R. Hansen and Hans Richel](https://www.cambridge.org/us/universitypress/subjects/computer-science/programming-languages-and-applied-logic/functional-programming-using-f?format=HB&isbn=9781107019027)
+ 
+ > Photo by [Ilija Boshkov](https://unsplash.com/@boshkov?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/0nI1DczRQAM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  
