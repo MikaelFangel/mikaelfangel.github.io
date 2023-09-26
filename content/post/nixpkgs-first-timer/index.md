@@ -6,6 +6,7 @@ date: 2023-09-26 00:00:00+0000
 image: cover.jpg
 categories:
     - Nix
+    - Personal
 tags:
     - Nix
     - nixpkgs
