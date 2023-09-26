@@ -3,7 +3,7 @@ title: My Journey as a First-Time Nixpkgs Contributor
 description: Reflecting on my initial experience as a contributor to the Nixpkgs repository
 slug: nixpkgs-first-timer
 date: 2023-09-26 00:00:00+0000
-image: 
+image: cover.jpg
 categories:
     - Nix
 tags:
@@ -63,3 +63,6 @@ This addition to the maintainer-list must be in alphabetical order. The commit a
 ### Adding the Package
 
 When adding the package, the commit message should follow the format "package-name: init at version". For example, "slurm: init at 0.4.4".
+
+ > Photo by [Yeshi Kangrang](https://unsplash.com/@omgitsyeshi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/iuqxv7kFj64?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  
