@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>F# on MikaelFangel's Notebook</title><link>https://mikaelfangel.github.io/tags/f#/</link><description>Recent content in F# on MikaelFangel's Notebook</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mikaelfangel.github.io/tags/f#/index.xml" rel="self" type="application/rss+xml"/><item><title>Solutions to Functional Programming Using F# Chap. 4</title><link>https://mikaelfangel.github.io/p/function-programming-chap4/</link><pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/function-programming-chap4/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/function-programming-chap4/cover.jpg" alt="Featured image of post Solutions to Functional Programming Using F# Chap. 4" />&lt;p>Here I&amp;rsquo;ll post the code for my solutions to the 4th chapter of the book. The solutions for the book is made by me as a part of the course &amp;ldquo;02157 Functional Programming&amp;rdquo; on DTU. I&amp;rsquo;ll update the post with more solutions when and if I solve more of the exercises.&lt;/p>
+&lt;h2 id="43">4.3&lt;/h2>
+&lt;p>In this function we should generate the first n even numbers. I use tail recursion for speed and to avoid stackoverflow. Because we should generate the first n even numbers we always start the iterator from 0 and then we can just increment the iterator i with 2 each time. By incrementing by 2 each time we avoid a check for if the numbers are even or not.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">evenN&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">evenNInner&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">evenNInner&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">acc&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nn">List&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">rev&lt;/span> &lt;span class="n">acc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">evenNInner&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="47">4.7&lt;/h2>
+&lt;p>We should find the number of times x occurs in a given list. To do this we split the list using the cons operator and then compare the head with the given x. Each time there is a match we add one to the result and continue the recursion. If there is no match we just recurse without adding anything. This effectively gives us the number of time x occurs in the list.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">multiplicity&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">head&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">tail&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">head&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">multiplicity&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">tail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">tail&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">multiplicity&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">tail&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="49">4.9&lt;/h2>
+&lt;p>We should write a zip function and because a zip list is just a list of tuples containing the contents of both list we contruct this using a simple match pattern. We also throws an error if the list are of uneven lengths as it is thus not possible to zip the two lists.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">zip&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)::&lt;/span>&lt;span class="n">zip&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">failwith&lt;/span> &lt;span class="s">&amp;#34;zip: The lists are of uneven lengths&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="411">4.11&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">count&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">count&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">count&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">insert&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">insert&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="o">_,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">plus&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">ys&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">xs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">plus&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">plus&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">minus&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">xs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">minus&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">minus&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">minus&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="412">4.12&lt;/h2>
+&lt;p>Here we should sum up all elements where the predicate p is true. This we do by using a match pattern with a when statement. If the predicate is true we just recurse until the list is empty and then returning 0.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">((&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">int&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kt">bool&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">xs&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">sum&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">xs&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">sum&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="416">4.16&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">f: int * int List -&amp;gt; int List
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">g: a&amp;#39; * a&amp;#39; List -&amp;gt; a&amp;#39; * a&amp;#39; List
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">h: a&amp;#39; List -&amp;gt; a&amp;#39; List
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="417">4.17&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>&lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kt">bool&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="418">4.18&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>&lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Book by &lt;a class="link" href="https://www.cambridge.org/us/universitypress/subjects/computer-science/programming-languages-and-applied-logic/functional-programming-using-f?format=HB&amp;amp;isbn=9781107019027" target="_blank" rel="noopener"
+>Michael R. Hansen and Hans Richel&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@boshkov?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Ilija Boshkov&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/0nI1DczRQAM?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
