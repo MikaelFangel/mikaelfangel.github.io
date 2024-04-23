@@ -1,5 +1,5 @@
 ---
-title: Add a brackground to the Obisidian icon using imagemagick
+title: Add a background to the Obisidian icon using imagemagick
 description: How to add a background to a transparent png image using imagemagick on Linux
 slug: imagemagick-icon
 date: 2023-10-16 00:00:00+0000
