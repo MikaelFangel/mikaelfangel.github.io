@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nix on MikaelFangel's Notebook</title><link>https://mikaelfangel.github.io/categories/nix/</link><description>Recent content in Nix on MikaelFangel's Notebook</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 01 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mikaelfangel.github.io/categories/nix/index.xml" rel="self" type="application/rss+xml"/><item><title>Flakehub Intial Thoughts</title><link>https://mikaelfangel.github.io/p/flakehub-initial-thoughts/</link><pubDate>Sun, 01 Oct 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/flakehub-initial-thoughts/</guid><description>&lt;p>In the fast-paced world of software development, managing packages efficiently and ensuring seamless updates is crucial. This is where &amp;ldquo;flakehub.com,&amp;rdquo; brought to you by Determinate Systems, comes into play. In this post, we&amp;rsquo;ll dive into what FlakeHub is all about and how it can simplify your software management processes.&lt;/p>
+&lt;h2 id="what-is-flakehub">What is FlakeHub?
+&lt;/h2>&lt;p>FlakeHub is a platform designed to facilitate the publication and management of software packages, commonly referred to as &amp;ldquo;flakes.&amp;rdquo; What sets FlakeHub apart is its ability to accommodate both public and unlisted flakes, making it a versatile solution for developers and organizations alike. By centralizing your flakes on FlakeHub, you gain the advantage of easy accessibility and searchability.&lt;/p>
+&lt;h2 id="semantic-versioning-made-easy">Semantic Versioning Made Easy
+&lt;/h2>&lt;p>At the core of FlakeHub&amp;rsquo;s approach to package management is the use of Semantic Versioning, or SemVer. SemVer is a versioning scheme that allows developers to communicate changes and updates in a standardized way. With FlakeHub, all packages are managed using this scheme, providing users with a clear understanding of what to expect from packages and how updates may impact their systems. It is with this approach also very easy to define rules for how systems update their packages based on the versions alone.&lt;/p>
+&lt;h2 id="automate-with-github-actions">Automate with GitHub Actions
+&lt;/h2>&lt;p>One of the standout features of FlakeHub is its integration with GitHub Actions. Determinate Systems has developed a GitHub Action that empowers you to effortlessly publish your flakes to the hub. This automation not only saves time but also ensures that your packages follow SemVer conventions. By automating the process, you can keep your packages up-to-date and well-organized with minimal effort.&lt;/p>
+&lt;h2 id="github-action-generator">GitHub Action Generator
+&lt;/h2>&lt;p>To further simplify the integration of FlakeHub with your projects, Determinate Systems offers a GitHub Action generator. This tool is designed to streamline the process of adding the necessary workflow to your GitHub repository. With just a few clicks, you can configure the automatic publishing of your flakes, making it a breeze to manage your packages efficiently.&lt;/p>
+&lt;h2 id="get-started-with-flakehub">Get Started with FlakeHub
+&lt;/h2>&lt;p>If you&amp;rsquo;re eager to explore FlakeHub and leverage its powerful features for your software projects, head over to their website at &lt;a class="link" href="flakehub.com" >flakehub.com&lt;/a>. There, you&amp;rsquo;ll find more detailed information, guides, and resources to help you get started.&lt;/p>
+&lt;p>In conclusion, FlakeHub, powered by Determinate Systems, is poised to revolutionize the way you manage and publish software packages. With its commitment to SemVer, automation through GitHub Actions, and user-friendly GitHub Action generator.&lt;/p></description></item><item><title>Demystifying Nix Flakes - Part 1</title><link>https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/</link><pubDate>Thu, 28 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/cover.jpg" alt="Featured image of post Demystifying Nix Flakes - Part 1" />&lt;h2 id="motivation">Motivation
+&lt;/h2>&lt;p>Nix Flakes introduce a new way of managing and deploying Nix packages and configurations. This post aims to provide an overview of what Nix Flakes are, how they differ from traditional Nix packages, and how to enable and use them on your system.&lt;/p>
+&lt;h2 id="what-are-nix-flakes">What Are Nix Flakes?
+&lt;/h2>&lt;p>Nix Flakes are a new feature in the Nix package manager that offer a more declarative and reproducible approach to package management and system configuration. They are designed to address some of the limitations of traditional Nix package management.&lt;/p>
+&lt;h2 id="differences-between-flakes-and-traditional-nix-packages">Differences Between Flakes and Traditional Nix Packages
+&lt;/h2>&lt;p>Nix Flakes differ from traditional Nix packages in several key ways:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Declarative Configuration&lt;/strong>: Flakes encourage a more declarative configuration style, making it easier to specify precisely what packages and system configurations you want.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Reproducibility&lt;/strong>: Flakes make it easier to create reproducible builds and system configurations, reducing the chances of unexpected changes.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Git Integration&lt;/strong>: Flakes leverage Git for fetching dependencies, enabling more flexible and versioned package management.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Simplified Channel Management&lt;/strong>: Flakes simplify channel management by allowing you to specify dependencies directly in your flake.nix file.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="enabling-flakes-on-your-system">Enabling Flakes on Your System
+&lt;/h2>&lt;p>To enable Nix Flakes system-wide on NixOS, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Open your &lt;code>configuration.nix&lt;/code> file.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Add the following lines to enable the &lt;code>nix-command&lt;/code> and &lt;code>flakes&lt;/code> features:&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nix&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">settings&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">experimental-features&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;nix-command&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;flakes&amp;#34;&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>Since Flakes use Git to pull dependencies, ensure that Git is installed by adding it to your system packages:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">systemPackages&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="k">with&lt;/span> &lt;span class="n">pkgs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="n">git&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>Apply the changes by running the following command:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> sudo nixos-rebuild switch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>You have now successfully enabled &lt;code>nix flakes&lt;/code> and the new &lt;code>nix command&lt;/code> on your system.&lt;/p>
+&lt;h2 id="managing-system-channels-using-nix-flakes">Managing System Channels Using Nix Flakes
+&lt;/h2>&lt;p>When flakes is enabled, it first look for a file called &lt;code>/etc/nixos/flake.nix&lt;/code>. If not found, it will fallback to using &lt;code>/etc/nixos/configuration.nix&lt;/code>.&lt;/p>
+&lt;p>To adapt your existing configuration for use with Flakes, you can use the following template. Be sure to adjust the system and architecture to match your setup:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;My NixOS configuration&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixpkgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nixos/nixpkgs/nixos-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixosConfigurations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixosSystem&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64-linux&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">specialArgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">inherit&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">modules&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sr">./configuration.nix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>If you choose to manage your system using a flake.nix, you can remove your current channels by running:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo nix-channel --list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo nix-channel --remove nixos-23.05
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Additionally, consider removing the home-manager channel if it has been added.&lt;/p>
+&lt;p>Here&amp;rsquo;s an example of a configuration file that preserves your existing config and home-manager setup:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;The flake configuration of my NixOS machine&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nixos/nixpkgs/nixos-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nix-community/home-manager/release-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">follows&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;nixpkgs&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">@&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">...&lt;/span>&lt;span class="p">}:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixosConfigurations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixosSystem&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64-linux&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">specialArgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">inherit&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">modules&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sr">./configuration.nix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>With this configuration, you can effectively manage your system using Nix Flakes while preserving your previous setup.&lt;/p>
+&lt;h2 id="how-to-enable-autoupgrade-with-flakes">How to enable autoUpgrade with flakes?
+&lt;/h2>&lt;p>Because flakes write a lock the old way of configuring autoUpgrade no longers works unless we pass some flags to it. To have autoUpgrade as before you could do the following:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Auto upgrade the system&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">autoUpgrade&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">enable&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">flake&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">self&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">outPath&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">flags&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;--update-input&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;nixpkgs&amp;#34;&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">persistent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dates&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;daily&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@downrightpunch?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Marc Newberry&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/omuw_oYkXs0?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>My Journey as a First-Time Nixpkgs Contributor</title><link>https://mikaelfangel.github.io/p/nixpkgs-first-timer/</link><pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/nixpkgs-first-timer/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/nixpkgs-first-timer/cover.jpg" alt="Featured image of post My Journey as a First-Time Nixpkgs Contributor" />&lt;p>For a considerable time, I had aspired to become a package maintainer for a Linux distribution. Encouraged by my recent and positive encounters with NixOS and its community, I decided to take the plunge by maintaining a Nix package. In this post, I aim to share the valuable lessons I learned during my first package contribution. However, it&amp;rsquo;s essential to note that for a comprehensive set of guidelines, one should always refer to the &lt;a class="link" href="https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener"
+>CONTRIBUTING.md&lt;/a> document. The content of this post may appear basic to some, and most of these insights are drawn from my experience with &lt;a class="link" href="https://github.com/NixOS/nixpkgs/pull/257357" target="_blank" rel="noopener"
+>this Pull Request&lt;/a> and the CONTRIBUTING.md guidelines.&lt;/p>
+&lt;h2 id="package">Package
+&lt;/h2>&lt;h3 id="naming">Naming
+&lt;/h3>&lt;p>If the package you&amp;rsquo;re adding has a name that conflicts with an existing package in nixpkgs, endeavor to give your package a meaningful and distinct name. In my case, the package I attempted to add was named &amp;ldquo;slurm,&amp;rdquo; which had a naming conflict with an existing package. As suggested in my Pull Request, I ultimately named the package &amp;ldquo;slurm-nm&amp;rdquo; to clarify that it is a network monitoring tool.&lt;/p>
+&lt;h3 id="placement">Placement
+&lt;/h3>&lt;p>The package should be located within the new hierarchical structure, following the path &lt;code>pkgs/by-name/sl/slurm-cli/package.nix&lt;/code>. There&amp;rsquo;s no longer a need to include it at the top-level for it to function correctly.&lt;/p>
+&lt;h3 id="build">Build
+&lt;/h3>&lt;p>Once the package is correctly placed, build it from the root of the project using &lt;code>nix-build -A package-name&lt;/code>, and then verify that the package located at &lt;code>result/bin/package&lt;/code> functions as expected.&lt;/p>
+&lt;h3 id="contents">Contents
+&lt;/h3>&lt;p>Ensure that the package does not contain any trailing whitespace, and there should be at most one newline between statements. If the &lt;code>buildPhase&lt;/code> and &lt;code>installPhase&lt;/code> do not perform any actions, you can exclude them from the derivation file. Additionally, the &lt;code>meta&lt;/code> section in the file should provide information about the license, maintainer, and, in this case, the main program for the derivation. During this process, I learned that &lt;code>license.gpl2&lt;/code> is deprecated in favor of &lt;code>license.gpl2Plus&lt;/code> and &lt;code>license.gpl2Only&lt;/code>.&lt;/p>
+&lt;h2 id="commit-rules">Commit Rules
+&lt;/h2>&lt;h3 id="adding-yourself-as-a-maintainer">Adding Yourself as a Maintainer
+&lt;/h3>&lt;p>If you have never committed anything to nixpkgs before, you should add yourself as a maintainer to the &lt;a class="link" href="https://github.com/NixOS/nixpkgs/blob/master/maintainers/maintainer-list.nix" target="_blank" rel="noopener"
+>maintainer-list.nix&lt;/a> file following the structure below:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">handle&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Required&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Your name&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Optional, but at least one of email, matrix, or githubId must be given&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;address@example.org&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">matrix&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;@user:example.org&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">github&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;GithubUsername&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">githubId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">your-github-id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">keys&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fingerprint&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;AAAA BBBB CCCC DDDD EEEE FFFF 0000 1111 2222 3333&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>This addition to the maintainer-list must be in alphabetical order. The commit adding yourself to this list should adhere to the guidelines and, therefore, have a commit message like &amp;ldquo;maintainers: add mikaelfangel&amp;rdquo;. Importantly, this commit MUST precede a commit that adds the package. If the commit ordering is incorrect, use &lt;code>git rebase -i&lt;/code> to reorder the commits. Once done, use &lt;code>git push --force-with-lease&lt;/code> to push the changes.&lt;/p>
+&lt;h3 id="adding-the-package">Adding the Package
+&lt;/h3>&lt;p>When adding the package, the commit message should follow the format &amp;ldquo;package-name: init at version&amp;rdquo;. For example, &amp;ldquo;slurm: init at 0.4.4&amp;rdquo;.&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@omgitsyeshi?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Yeshi Kangrang&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/iuqxv7kFj64?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
