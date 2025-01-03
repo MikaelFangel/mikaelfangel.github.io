@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Recurrence Relation on MikaelFangel's Notebook</title><link>https://mikaelfangel.github.io/tags/recurrence-relation/</link><description>Recent content in Recurrence Relation on MikaelFangel's Notebook</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 22 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mikaelfangel.github.io/tags/recurrence-relation/index.xml" rel="self" type="application/rss+xml"/><item><title>Defending Zion</title><link>https://mikaelfangel.github.io/p/defending-zion/</link><pubDate>Fri, 22 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/defending-zion/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/defending-zion/cover.jpg" alt="Featured image of post Defending Zion" />&lt;h2 id="problem">Problem
+&lt;/h2>&lt;p>You are given a time period of n seconds, during which waves of robots arrive. Each wave consists of Xi robots, and you have an EMP that can be used to defeat them. The EMP has a charge, denoted by the function f(j), which recharges after use. The goal is to find the optimal times to activate the EMP to maximize the total number of robots defeated over the entire period n.&lt;/p>
+&lt;h3 id="input">Input
+&lt;/h3>&lt;ul>
+&lt;li>The first line contains the value of n, representing the duration of the time period.&lt;/li>
+&lt;li>The second line contains n integers, Xi, representing the number of robots in each wave.&lt;/li>
+&lt;li>The third line contains n values representing the output of the function f(j) at each second.&lt;/li>
+&lt;/ul>
+&lt;h3 id="output">Output
+&lt;/h3>&lt;p>A single line containing the maximum number of robots defeated.&lt;/p>
+&lt;h2 id="solution-approach">Solution Approach
+&lt;/h2>&lt;p>To solve this problem, we can make some key observations:&lt;/p>
+&lt;ol>
+&lt;li>We cannot defeat more robots than there are in a given wave or more robots than the EMP charge allows.&lt;/li>
+&lt;li>The number of robots defeated in a wave is given by min(Xi, f(j)), where Xi is the number of robots in that wave, and f(j) is the EMP charge.&lt;/li>
+&lt;li>The number of robots that can be defeated in the next iteration depends on min(Xi+1, f(1)), as the EMP charge resets at each iteration.&lt;/li>
+&lt;/ol>
+&lt;p>We can express the problem using the following recurrence relation:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">OPT(i, j) = max(min(Xi, f(j)) + OPT(i + 1, 1), OPT(i + 1, j + 1))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here, OPT(i, j) represents the maximum number of robots defeated starting from the i&amp;rsquo;th second with EMP charge j. This recursive relation helps us find the optimal strategy for using the EMP throughout the time period.&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@lanirudhreddy?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>ANIRUDH&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/UVa6OF2XXIc?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplah&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

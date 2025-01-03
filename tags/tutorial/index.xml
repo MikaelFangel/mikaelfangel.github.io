@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorial on MikaelFangel's Notebook</title><link>https://mikaelfangel.github.io/tags/tutorial/</link><description>Recent content in Tutorial on MikaelFangel's Notebook</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 28 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mikaelfangel.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml"/><item><title>Demystifying Nix Flakes - Part 1</title><link>https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/</link><pubDate>Thu, 28 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/cover.jpg" alt="Featured image of post Demystifying Nix Flakes - Part 1" />&lt;h2 id="motivation">Motivation
+&lt;/h2>&lt;p>Nix Flakes introduce a new way of managing and deploying Nix packages and configurations. This post aims to provide an overview of what Nix Flakes are, how they differ from traditional Nix packages, and how to enable and use them on your system.&lt;/p>
+&lt;h2 id="what-are-nix-flakes">What Are Nix Flakes?
+&lt;/h2>&lt;p>Nix Flakes are a new feature in the Nix package manager that offer a more declarative and reproducible approach to package management and system configuration. They are designed to address some of the limitations of traditional Nix package management.&lt;/p>
+&lt;h2 id="differences-between-flakes-and-traditional-nix-packages">Differences Between Flakes and Traditional Nix Packages
+&lt;/h2>&lt;p>Nix Flakes differ from traditional Nix packages in several key ways:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Declarative Configuration&lt;/strong>: Flakes encourage a more declarative configuration style, making it easier to specify precisely what packages and system configurations you want.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Reproducibility&lt;/strong>: Flakes make it easier to create reproducible builds and system configurations, reducing the chances of unexpected changes.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Git Integration&lt;/strong>: Flakes leverage Git for fetching dependencies, enabling more flexible and versioned package management.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Simplified Channel Management&lt;/strong>: Flakes simplify channel management by allowing you to specify dependencies directly in your flake.nix file.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="enabling-flakes-on-your-system">Enabling Flakes on Your System
+&lt;/h2>&lt;p>To enable Nix Flakes system-wide on NixOS, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Open your &lt;code>configuration.nix&lt;/code> file.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Add the following lines to enable the &lt;code>nix-command&lt;/code> and &lt;code>flakes&lt;/code> features:&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nix&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">settings&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">experimental-features&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;nix-command&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;flakes&amp;#34;&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>Since Flakes use Git to pull dependencies, ensure that Git is installed by adding it to your system packages:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">systemPackages&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="k">with&lt;/span> &lt;span class="n">pkgs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="n">git&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>Apply the changes by running the following command:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> sudo nixos-rebuild switch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>You have now successfully enabled &lt;code>nix flakes&lt;/code> and the new &lt;code>nix command&lt;/code> on your system.&lt;/p>
+&lt;h2 id="managing-system-channels-using-nix-flakes">Managing System Channels Using Nix Flakes
+&lt;/h2>&lt;p>When flakes is enabled, it first look for a file called &lt;code>/etc/nixos/flake.nix&lt;/code>. If not found, it will fallback to using &lt;code>/etc/nixos/configuration.nix&lt;/code>.&lt;/p>
+&lt;p>To adapt your existing configuration for use with Flakes, you can use the following template. Be sure to adjust the system and architecture to match your setup:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;My NixOS configuration&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixpkgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nixos/nixpkgs/nixos-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixosConfigurations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixosSystem&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64-linux&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">specialArgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">inherit&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">modules&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sr">./configuration.nix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>If you choose to manage your system using a flake.nix, you can remove your current channels by running:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo nix-channel --list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo nix-channel --remove nixos-23.05
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Additionally, consider removing the home-manager channel if it has been added.&lt;/p>
+&lt;p>Here&amp;rsquo;s an example of a configuration file that preserves your existing config and home-manager setup:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;The flake configuration of my NixOS machine&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nixos/nixpkgs/nixos-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nix-community/home-manager/release-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">follows&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;nixpkgs&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">@&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">...&lt;/span>&lt;span class="p">}:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixosConfigurations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixosSystem&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64-linux&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">specialArgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">inherit&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">modules&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sr">./configuration.nix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>With this configuration, you can effectively manage your system using Nix Flakes while preserving your previous setup.&lt;/p>
+&lt;h2 id="how-to-enable-autoupgrade-with-flakes">How to enable autoUpgrade with flakes?
+&lt;/h2>&lt;p>Because flakes write a lock the old way of configuring autoUpgrade no longers works unless we pass some flags to it. To have autoUpgrade as before you could do the following:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Auto upgrade the system&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">autoUpgrade&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">enable&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">flake&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">self&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">outPath&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">flags&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;--update-input&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;nixpkgs&amp;#34;&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">persistent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dates&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;daily&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@downrightpunch?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Marc Newberry&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/omuw_oYkXs0?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

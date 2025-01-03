@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on MikaelFangel's Notebook</title><link>https://mikaelfangel.github.io/post/</link><description>Recent content in Posts on MikaelFangel's Notebook</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 04 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mikaelfangel.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Solutions to Functional Programming Using F# Chap. 1</title><link>https://mikaelfangel.github.io/p/function-programming-chap1/</link><pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/function-programming-chap1/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/function-programming-chap1/cover.jpg" alt="Featured image of post Solutions to Functional Programming Using F# Chap. 1" />&lt;p>Here I&amp;rsquo;ll post the code for my solutions to the 1st chapter of the book.&lt;/p>
+&lt;h2 id="11">1.1
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">g&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">4&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="12">1.2
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">h&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nn">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nn">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Sqrt&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="13">1.3
+&lt;/h2>&lt;p>The function expression for &lt;code>g&lt;/code> is of type &lt;code>int -&amp;gt; int&lt;/code> and the function expression for &lt;code>h&lt;/code> is &lt;code>(float * float) -&amp;gt; float&lt;/code>&lt;/p>
+&lt;h2 id="14">1.4
+&lt;/h2>&lt;p>The recusion formula for the following problem is:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">0 = 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">n = n + (n - 1) for n &amp;gt; 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The code for the assignment:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The evaluation for f 3 is as follows:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">~&amp;gt; f 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + f (n - 1)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + f 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + (2 + f(2 - 1))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + (2 + f 1)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + (2 + (1 + f(1 - 1))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + (2 + (1 + f 0))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + (2 + (1 + 0))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + (2 + 1)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3 + 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="15">1.5
+&lt;/h2>&lt;p>The naive implementation of the solution to the problem would look like the code below.
+This solutions is however problematic because the recursion tree would expand exponentially.
+This due to the fact you call &lt;code>fib (n -1) + fib (n -2)&lt;/code> and thus you do two recursive calls for each level
+(if you imangine it as a tree) of your fibonacci sequence.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">fib&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">fib&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">fib&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>A better approach would be to utilize the concept of tail-recusion when solving the task, but this is unlikely the reader knows that at this point in the book.
+This would convert the recursive call into simple goto statements and thus avoid the exponetial stack growth as the previous solution.
+The new solution would the look something like this:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">fib&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">inner_fib&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">inner_fib&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inner_fib&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="n">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The evaluation for fib 4 is as follows for the naive solution:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">~&amp;gt; fib 4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; fib (4 - 1) + fib (4 - 2)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; fib 3 + fib 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; (fib (3 - 1) + fib (3 - 2)) + (fib (2 - 1) + fib (2 - 2))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; (fib 2 + fib 1) + (fib 1 + fib 0)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; ((fib (2 - 1) + fib(2 - 2) + fib 1) + (1 + 0))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; ((fib 1 + fib 0) + 1) + (1 + 0))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; ((1 + 0) + 1) + (1 + 0))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; (1 + 1) + (1 + 0))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 2 + 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">~&amp;gt; 3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="16">1.6
+&lt;/h2>&lt;p>The recursion formula for the following problem is:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">(m, 0) = m
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(m, n) = m + (m, n - 1)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The code for the solution:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">m&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="17">1.7
+&lt;/h2>&lt;p>The type for the expressions is:
+(System.Math.PI, fact -1) = (float * int)
+fact(fact 4) = int
+power(System.Math.PI, fact 2) = float
+(power, fact) = (float -&amp;gt; int -&amp;gt; float) * (int -&amp;gt; int))&lt;/p>
+&lt;blockquote>
+&lt;p>Book by &lt;a class="link" href="https://www.cambridge.org/us/universitypress/subjects/computer-science/programming-languages-and-applied-logic/functional-programming-using-f?format=HB&amp;amp;isbn=9781107019027" target="_blank" rel="noopener"
+>Michael R. Hansen and Hans Richel&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@boshkov?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Ilija Boshkov&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/0nI1DczRQAM?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Add a background to the Obisidian icon using imagemagick</title><link>https://mikaelfangel.github.io/p/imagemagick-icon/</link><pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/imagemagick-icon/</guid><description>&lt;p>Recently I&amp;rsquo;ve written a review on a PR where I requested that we used the Obsidian icon from the source. However this icon is only available as an svg file with a transparent background. So I suggested that we used imagemagick to add the background to the image because we already used it in the derivation. This task is however not as trivial as it first might seem. The PR with the discussion can be found &lt;a class="link" href="https://github.com/nixOS/nixpkgs/pull/260553" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>To add the background to the image I came up with the following solution:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Create the shadowed image&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">convert input.png &lt;span class="se">\(&lt;/span> +clone -background &lt;span class="s2">&amp;#34;rgba(0,0,0,0.5)&amp;#34;&lt;/span> -shadow 50x5+5+5 &lt;span class="se">\)&lt;/span> +swap -background none -layers merge +repage shadowed_image.png
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Create the rounded mask&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">convert -size XxY xc:none -fill &lt;span class="s2">&amp;#34;#232129&amp;#34;&lt;/span> -draw &lt;span class="s2">&amp;#34;roundrectangle 0,0,X,Y,35,35&amp;#34;&lt;/span> mask.png
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Overlay the rounded image with the shadow onto the colored background&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">convert -gravity center mask.png shadowed_image.png -composite -compose SrcIn rounded.png
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>In the solution X and Y denotes the size of the output image.&lt;/p></description></item><item><title>Flakehub Intial Thoughts</title><link>https://mikaelfangel.github.io/p/flakehub-initial-thoughts/</link><pubDate>Sun, 01 Oct 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/flakehub-initial-thoughts/</guid><description>&lt;p>In the fast-paced world of software development, managing packages efficiently and ensuring seamless updates is crucial. This is where &amp;ldquo;flakehub.com,&amp;rdquo; brought to you by Determinate Systems, comes into play. In this post, we&amp;rsquo;ll dive into what FlakeHub is all about and how it can simplify your software management processes.&lt;/p>
+&lt;h2 id="what-is-flakehub">What is FlakeHub?
+&lt;/h2>&lt;p>FlakeHub is a platform designed to facilitate the publication and management of software packages, commonly referred to as &amp;ldquo;flakes.&amp;rdquo; What sets FlakeHub apart is its ability to accommodate both public and unlisted flakes, making it a versatile solution for developers and organizations alike. By centralizing your flakes on FlakeHub, you gain the advantage of easy accessibility and searchability.&lt;/p>
+&lt;h2 id="semantic-versioning-made-easy">Semantic Versioning Made Easy
+&lt;/h2>&lt;p>At the core of FlakeHub&amp;rsquo;s approach to package management is the use of Semantic Versioning, or SemVer. SemVer is a versioning scheme that allows developers to communicate changes and updates in a standardized way. With FlakeHub, all packages are managed using this scheme, providing users with a clear understanding of what to expect from packages and how updates may impact their systems. It is with this approach also very easy to define rules for how systems update their packages based on the versions alone.&lt;/p>
+&lt;h2 id="automate-with-github-actions">Automate with GitHub Actions
+&lt;/h2>&lt;p>One of the standout features of FlakeHub is its integration with GitHub Actions. Determinate Systems has developed a GitHub Action that empowers you to effortlessly publish your flakes to the hub. This automation not only saves time but also ensures that your packages follow SemVer conventions. By automating the process, you can keep your packages up-to-date and well-organized with minimal effort.&lt;/p>
+&lt;h2 id="github-action-generator">GitHub Action Generator
+&lt;/h2>&lt;p>To further simplify the integration of FlakeHub with your projects, Determinate Systems offers a GitHub Action generator. This tool is designed to streamline the process of adding the necessary workflow to your GitHub repository. With just a few clicks, you can configure the automatic publishing of your flakes, making it a breeze to manage your packages efficiently.&lt;/p>
+&lt;h2 id="get-started-with-flakehub">Get Started with FlakeHub
+&lt;/h2>&lt;p>If you&amp;rsquo;re eager to explore FlakeHub and leverage its powerful features for your software projects, head over to their website at &lt;a class="link" href="flakehub.com" >flakehub.com&lt;/a>. There, you&amp;rsquo;ll find more detailed information, guides, and resources to help you get started.&lt;/p>
+&lt;p>In conclusion, FlakeHub, powered by Determinate Systems, is poised to revolutionize the way you manage and publish software packages. With its commitment to SemVer, automation through GitHub Actions, and user-friendly GitHub Action generator.&lt;/p></description></item><item><title>Demystifying Nix Flakes - Part 1</title><link>https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/</link><pubDate>Thu, 28 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/demystifying-nix-flakes-part1/cover.jpg" alt="Featured image of post Demystifying Nix Flakes - Part 1" />&lt;h2 id="motivation">Motivation
+&lt;/h2>&lt;p>Nix Flakes introduce a new way of managing and deploying Nix packages and configurations. This post aims to provide an overview of what Nix Flakes are, how they differ from traditional Nix packages, and how to enable and use them on your system.&lt;/p>
+&lt;h2 id="what-are-nix-flakes">What Are Nix Flakes?
+&lt;/h2>&lt;p>Nix Flakes are a new feature in the Nix package manager that offer a more declarative and reproducible approach to package management and system configuration. They are designed to address some of the limitations of traditional Nix package management.&lt;/p>
+&lt;h2 id="differences-between-flakes-and-traditional-nix-packages">Differences Between Flakes and Traditional Nix Packages
+&lt;/h2>&lt;p>Nix Flakes differ from traditional Nix packages in several key ways:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Declarative Configuration&lt;/strong>: Flakes encourage a more declarative configuration style, making it easier to specify precisely what packages and system configurations you want.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Reproducibility&lt;/strong>: Flakes make it easier to create reproducible builds and system configurations, reducing the chances of unexpected changes.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Git Integration&lt;/strong>: Flakes leverage Git for fetching dependencies, enabling more flexible and versioned package management.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Simplified Channel Management&lt;/strong>: Flakes simplify channel management by allowing you to specify dependencies directly in your flake.nix file.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="enabling-flakes-on-your-system">Enabling Flakes on Your System
+&lt;/h2>&lt;p>To enable Nix Flakes system-wide on NixOS, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Open your &lt;code>configuration.nix&lt;/code> file.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Add the following lines to enable the &lt;code>nix-command&lt;/code> and &lt;code>flakes&lt;/code> features:&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nix&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">settings&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">experimental-features&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;nix-command&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;flakes&amp;#34;&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>Since Flakes use Git to pull dependencies, ensure that Git is installed by adding it to your system packages:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">systemPackages&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="k">with&lt;/span> &lt;span class="n">pkgs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="n">git&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>Apply the changes by running the following command:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> sudo nixos-rebuild switch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>You have now successfully enabled &lt;code>nix flakes&lt;/code> and the new &lt;code>nix command&lt;/code> on your system.&lt;/p>
+&lt;h2 id="managing-system-channels-using-nix-flakes">Managing System Channels Using Nix Flakes
+&lt;/h2>&lt;p>When flakes is enabled, it first look for a file called &lt;code>/etc/nixos/flake.nix&lt;/code>. If not found, it will fallback to using &lt;code>/etc/nixos/configuration.nix&lt;/code>.&lt;/p>
+&lt;p>To adapt your existing configuration for use with Flakes, you can use the following template. Be sure to adjust the system and architecture to match your setup:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;My NixOS configuration&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixpkgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nixos/nixpkgs/nixos-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixosConfigurations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixosSystem&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64-linux&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">specialArgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">inherit&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">modules&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sr">./configuration.nix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>If you choose to manage your system using a flake.nix, you can remove your current channels by running:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo nix-channel --list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo nix-channel --remove nixos-23.05
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Additionally, consider removing the home-manager channel if it has been added.&lt;/p>
+&lt;p>Here&amp;rsquo;s an example of a configuration file that preserves your existing config and home-manager setup:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;The flake configuration of my NixOS machine&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nixos/nixpkgs/nixos-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;github:nix-community/home-manager/release-23.05&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">follows&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;nixpkgs&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">@&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">home-manager&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">...&lt;/span>&lt;span class="p">}:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixosConfigurations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">nixos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">nixpkgs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">nixosSystem&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64-linux&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">specialArgs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">inherit&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">modules&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sr">./configuration.nix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>With this configuration, you can effectively manage your system using Nix Flakes while preserving your previous setup.&lt;/p>
+&lt;h2 id="how-to-enable-autoupgrade-with-flakes">How to enable autoUpgrade with flakes?
+&lt;/h2>&lt;p>Because flakes write a lock the old way of configuring autoUpgrade no longers works unless we pass some flags to it. To have autoUpgrade as before you could do the following:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Auto upgrade the system&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">system&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">autoUpgrade&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">enable&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">flake&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">self&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">outPath&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">flags&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;--update-input&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;nixpkgs&amp;#34;&lt;/span> &lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">persistent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dates&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;daily&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@downrightpunch?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Marc Newberry&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/omuw_oYkXs0?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>My Journey as a First-Time Nixpkgs Contributor</title><link>https://mikaelfangel.github.io/p/nixpkgs-first-timer/</link><pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/nixpkgs-first-timer/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/nixpkgs-first-timer/cover.jpg" alt="Featured image of post My Journey as a First-Time Nixpkgs Contributor" />&lt;p>For a considerable time, I had aspired to become a package maintainer for a Linux distribution. Encouraged by my recent and positive encounters with NixOS and its community, I decided to take the plunge by maintaining a Nix package. In this post, I aim to share the valuable lessons I learned during my first package contribution. However, it&amp;rsquo;s essential to note that for a comprehensive set of guidelines, one should always refer to the &lt;a class="link" href="https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener"
+>CONTRIBUTING.md&lt;/a> document. The content of this post may appear basic to some, and most of these insights are drawn from my experience with &lt;a class="link" href="https://github.com/NixOS/nixpkgs/pull/257357" target="_blank" rel="noopener"
+>this Pull Request&lt;/a> and the CONTRIBUTING.md guidelines.&lt;/p>
+&lt;h2 id="package">Package
+&lt;/h2>&lt;h3 id="naming">Naming
+&lt;/h3>&lt;p>If the package you&amp;rsquo;re adding has a name that conflicts with an existing package in nixpkgs, endeavor to give your package a meaningful and distinct name. In my case, the package I attempted to add was named &amp;ldquo;slurm,&amp;rdquo; which had a naming conflict with an existing package. As suggested in my Pull Request, I ultimately named the package &amp;ldquo;slurm-nm&amp;rdquo; to clarify that it is a network monitoring tool.&lt;/p>
+&lt;h3 id="placement">Placement
+&lt;/h3>&lt;p>The package should be located within the new hierarchical structure, following the path &lt;code>pkgs/by-name/sl/slurm-cli/package.nix&lt;/code>. There&amp;rsquo;s no longer a need to include it at the top-level for it to function correctly.&lt;/p>
+&lt;h3 id="build">Build
+&lt;/h3>&lt;p>Once the package is correctly placed, build it from the root of the project using &lt;code>nix-build -A package-name&lt;/code>, and then verify that the package located at &lt;code>result/bin/package&lt;/code> functions as expected.&lt;/p>
+&lt;h3 id="contents">Contents
+&lt;/h3>&lt;p>Ensure that the package does not contain any trailing whitespace, and there should be at most one newline between statements. If the &lt;code>buildPhase&lt;/code> and &lt;code>installPhase&lt;/code> do not perform any actions, you can exclude them from the derivation file. Additionally, the &lt;code>meta&lt;/code> section in the file should provide information about the license, maintainer, and, in this case, the main program for the derivation. During this process, I learned that &lt;code>license.gpl2&lt;/code> is deprecated in favor of &lt;code>license.gpl2Plus&lt;/code> and &lt;code>license.gpl2Only&lt;/code>.&lt;/p>
+&lt;h2 id="commit-rules">Commit Rules
+&lt;/h2>&lt;h3 id="adding-yourself-as-a-maintainer">Adding Yourself as a Maintainer
+&lt;/h3>&lt;p>If you have never committed anything to nixpkgs before, you should add yourself as a maintainer to the &lt;a class="link" href="https://github.com/NixOS/nixpkgs/blob/master/maintainers/maintainer-list.nix" target="_blank" rel="noopener"
+>maintainer-list.nix&lt;/a> file following the structure below:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">handle&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Required&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Your name&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Optional, but at least one of email, matrix, or githubId must be given&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;address@example.org&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">matrix&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;@user:example.org&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">github&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;GithubUsername&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">githubId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">your-github-id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">keys&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fingerprint&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;AAAA BBBB CCCC DDDD EEEE FFFF 0000 1111 2222 3333&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>This addition to the maintainer-list must be in alphabetical order. The commit adding yourself to this list should adhere to the guidelines and, therefore, have a commit message like &amp;ldquo;maintainers: add mikaelfangel&amp;rdquo;. Importantly, this commit MUST precede a commit that adds the package. If the commit ordering is incorrect, use &lt;code>git rebase -i&lt;/code> to reorder the commits. Once done, use &lt;code>git push --force-with-lease&lt;/code> to push the changes.&lt;/p>
+&lt;h3 id="adding-the-package">Adding the Package
+&lt;/h3>&lt;p>When adding the package, the commit message should follow the format &amp;ldquo;package-name: init at version&amp;rdquo;. For example, &amp;ldquo;slurm: init at 0.4.4&amp;rdquo;.&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@omgitsyeshi?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Yeshi Kangrang&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/iuqxv7kFj64?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Solutions to Functional Programming Using F# Chap. 4</title><link>https://mikaelfangel.github.io/p/function-programming-chap4/</link><pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/function-programming-chap4/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/function-programming-chap4/cover.jpg" alt="Featured image of post Solutions to Functional Programming Using F# Chap. 4" />&lt;p>Here I&amp;rsquo;ll post the code for my solutions to the 4th chapter of the book. The solutions for the book is made by me as a part of the course &amp;ldquo;02157 Functional Programming&amp;rdquo; on DTU. I&amp;rsquo;ll update the post with more solutions when and if I solve more of the exercises.&lt;/p>
+&lt;h2 id="43">4.3
+&lt;/h2>&lt;p>In this function we should generate the first n even numbers. I use tail recursion for speed and to avoid stackoverflow. Because we should generate the first n even numbers we always start the iterator from 0 and then we can just increment the iterator i with 2 each time. By incrementing by 2 each time we avoid a check for if the numbers are even or not.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">evenN&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">evenNInner&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">evenNInner&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">acc&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nn">List&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">rev&lt;/span> &lt;span class="n">acc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">evenNInner&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="47">4.7
+&lt;/h2>&lt;p>We should find the number of times x occurs in a given list. To do this we split the list using the cons operator and then compare the head with the given x. Each time there is a match we add one to the result and continue the recursion. If there is no match we just recurse without adding anything. This effectively gives us the number of time x occurs in the list.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">multiplicity&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">head&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">tail&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">head&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">multiplicity&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">tail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">tail&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">multiplicity&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">tail&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="49">4.9
+&lt;/h2>&lt;p>We should write a zip function and because a zip list is just a list of tuples containing the contents of both list we contruct this using a simple match pattern. We also throws an error if the list are of uneven lengths as it is thus not possible to zip the two lists.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">zip&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)::&lt;/span>&lt;span class="n">zip&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">failwith&lt;/span> &lt;span class="s">&amp;#34;zip: The lists are of uneven lengths&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="411">4.11
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">count&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">count&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">count&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">insert&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">l&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ls&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">insert&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="o">_,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">intersect&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">plus&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">ys&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">xs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">plus&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">plus&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">minus&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="bp">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">xs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">minus&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">::&lt;/span> &lt;span class="n">minus&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">ys&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">minus&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ys&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="412">4.12
+&lt;/h2>&lt;p>Here we should sum up all elements where the predicate p is true. This we do by using a match pattern with a when statement. If the predicate is true we just recurse until the list is empty and then returning 0.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="nv">rec&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">((&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">int&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kt">bool&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">match&lt;/span> &lt;span class="n">xs&lt;/span> &lt;span class="k">with&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="bp">[]&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">xs&lt;/span> &lt;span class="k">when&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">sum&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">|&lt;/span> &lt;span class="o">_::&lt;/span>&lt;span class="n">xs&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">sum&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">xs&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="416">4.16
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">f: int * int List -&amp;gt; int List
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">g: a&amp;#39; * a&amp;#39; List -&amp;gt; a&amp;#39; * a&amp;#39; List
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">h: a&amp;#39; List -&amp;gt; a&amp;#39; List
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="417">4.17
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>&lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kt">bool&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="418">4.18
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fsharp" data-lang="fsharp">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>&lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">a&amp;#39;&lt;/span> &lt;span class="n">List&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Book by &lt;a class="link" href="https://www.cambridge.org/us/universitypress/subjects/computer-science/programming-languages-and-applied-logic/functional-programming-using-f?format=HB&amp;amp;isbn=9781107019027" target="_blank" rel="noopener"
+>Michael R. Hansen and Hans Richel&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@boshkov?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Ilija Boshkov&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/0nI1DczRQAM?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Defending Zion</title><link>https://mikaelfangel.github.io/p/defending-zion/</link><pubDate>Fri, 22 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/defending-zion/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/defending-zion/cover.jpg" alt="Featured image of post Defending Zion" />&lt;h2 id="problem">Problem
+&lt;/h2>&lt;p>You are given a time period of n seconds, during which waves of robots arrive. Each wave consists of Xi robots, and you have an EMP that can be used to defeat them. The EMP has a charge, denoted by the function f(j), which recharges after use. The goal is to find the optimal times to activate the EMP to maximize the total number of robots defeated over the entire period n.&lt;/p>
+&lt;h3 id="input">Input
+&lt;/h3>&lt;ul>
+&lt;li>The first line contains the value of n, representing the duration of the time period.&lt;/li>
+&lt;li>The second line contains n integers, Xi, representing the number of robots in each wave.&lt;/li>
+&lt;li>The third line contains n values representing the output of the function f(j) at each second.&lt;/li>
+&lt;/ul>
+&lt;h3 id="output">Output
+&lt;/h3>&lt;p>A single line containing the maximum number of robots defeated.&lt;/p>
+&lt;h2 id="solution-approach">Solution Approach
+&lt;/h2>&lt;p>To solve this problem, we can make some key observations:&lt;/p>
+&lt;ol>
+&lt;li>We cannot defeat more robots than there are in a given wave or more robots than the EMP charge allows.&lt;/li>
+&lt;li>The number of robots defeated in a wave is given by min(Xi, f(j)), where Xi is the number of robots in that wave, and f(j) is the EMP charge.&lt;/li>
+&lt;li>The number of robots that can be defeated in the next iteration depends on min(Xi+1, f(1)), as the EMP charge resets at each iteration.&lt;/li>
+&lt;/ol>
+&lt;p>We can express the problem using the following recurrence relation:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">OPT(i, j) = max(min(Xi, f(j)) + OPT(i + 1, 1), OPT(i + 1, j + 1))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here, OPT(i, j) represents the maximum number of robots defeated starting from the i&amp;rsquo;th second with EMP charge j. This recursive relation helps us find the optimal strategy for using the EMP throughout the time period.&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@lanirudhreddy?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>ANIRUDH&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/UVa6OF2XXIc?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplah&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Longest Palindromic Subsequence</title><link>https://mikaelfangel.github.io/p/longest-palindrome/</link><pubDate>Wed, 20 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/longest-palindrome/</guid><description>&lt;p>A palindrome is a non-empty string that exhibits symmetry when read forwards and backwards. Examples of palindromes include “anna,” “racecar,” and “abba.”&lt;/p>
+&lt;h2 id="problem">Problem
+&lt;/h2>&lt;p>Determine the longest palindromic subsequence of a given string. To find the palindrome you are allowed to delete characters in the string.&lt;/p>
+&lt;h3 id="input">Input
+&lt;/h3>&lt;p>A string of length n&lt;/p>
+&lt;h3 id="output">Output
+&lt;/h3>&lt;p>The length of the longest palindrome&lt;/p>
+&lt;h2 id="solution-approach">Solution Approach
+&lt;/h2>&lt;p>To address this problem, we leverage the Longest Common Subsequence (LCS) algorithm, a dynamic programming technique. This approach entails breaking the problem into smaller, more manageable subproblems.&lt;/p>
+&lt;p>In our context, the core issue revolves around deciding whether a character should be included in the longest palindromic subsequence or not. The hallmark of palindromes is their symmetric nature, reading the same forwards and backwards. To harness this property, we apply the LCS algorithm to both the original string and its reversed counterpart.&lt;/p>
+&lt;p>This systematic application of LCS facilitates the efficient identification of the longest palindromic subsequence within the given string.&lt;/p>
+&lt;h3 id="implementation">Implementation
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.io.BufferedReader&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.io.InputStreamReader&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">LongestPalindrome&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">throws&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">IOException&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">BufferedReader&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">br&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">BufferedReader&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">InputStreamReader&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">in&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">input&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">br&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">readLine&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">input&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">[][]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">charAt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">input&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">charAt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">else&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">matrix&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">][&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Hello World</title><link>https://mikaelfangel.github.io/p/hello-world/</link><pubDate>Tue, 19 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/hello-world/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/hello-world/cover.jpg" alt="Featured image of post Hello World" />&lt;p>Welcome to my personal blog where I share my notes on stuff I find interesting. I&amp;rsquo;ve created this blog to share information I find and as a way of taking notes on tehcnical topics.&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+>Pawel Czerwinski&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

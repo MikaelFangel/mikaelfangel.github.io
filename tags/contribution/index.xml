@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contribution on MikaelFangel's Notebook</title><link>https://mikaelfangel.github.io/tags/contribution/</link><description>Recent content in Contribution on MikaelFangel's Notebook</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mikaelfangel.github.io/tags/contribution/index.xml" rel="self" type="application/rss+xml"/><item><title>My Journey as a First-Time Nixpkgs Contributor</title><link>https://mikaelfangel.github.io/p/nixpkgs-first-timer/</link><pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate><guid>https://mikaelfangel.github.io/p/nixpkgs-first-timer/</guid><description>&lt;img src="https://mikaelfangel.github.io/p/nixpkgs-first-timer/cover.jpg" alt="Featured image of post My Journey as a First-Time Nixpkgs Contributor" />&lt;p>For a considerable time, I had aspired to become a package maintainer for a Linux distribution. Encouraged by my recent and positive encounters with NixOS and its community, I decided to take the plunge by maintaining a Nix package. In this post, I aim to share the valuable lessons I learned during my first package contribution. However, it&amp;rsquo;s essential to note that for a comprehensive set of guidelines, one should always refer to the &lt;a class="link" href="https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener"
+>CONTRIBUTING.md&lt;/a> document. The content of this post may appear basic to some, and most of these insights are drawn from my experience with &lt;a class="link" href="https://github.com/NixOS/nixpkgs/pull/257357" target="_blank" rel="noopener"
+>this Pull Request&lt;/a> and the CONTRIBUTING.md guidelines.&lt;/p>
+&lt;h2 id="package">Package
+&lt;/h2>&lt;h3 id="naming">Naming
+&lt;/h3>&lt;p>If the package you&amp;rsquo;re adding has a name that conflicts with an existing package in nixpkgs, endeavor to give your package a meaningful and distinct name. In my case, the package I attempted to add was named &amp;ldquo;slurm,&amp;rdquo; which had a naming conflict with an existing package. As suggested in my Pull Request, I ultimately named the package &amp;ldquo;slurm-nm&amp;rdquo; to clarify that it is a network monitoring tool.&lt;/p>
+&lt;h3 id="placement">Placement
+&lt;/h3>&lt;p>The package should be located within the new hierarchical structure, following the path &lt;code>pkgs/by-name/sl/slurm-cli/package.nix&lt;/code>. There&amp;rsquo;s no longer a need to include it at the top-level for it to function correctly.&lt;/p>
+&lt;h3 id="build">Build
+&lt;/h3>&lt;p>Once the package is correctly placed, build it from the root of the project using &lt;code>nix-build -A package-name&lt;/code>, and then verify that the package located at &lt;code>result/bin/package&lt;/code> functions as expected.&lt;/p>
+&lt;h3 id="contents">Contents
+&lt;/h3>&lt;p>Ensure that the package does not contain any trailing whitespace, and there should be at most one newline between statements. If the &lt;code>buildPhase&lt;/code> and &lt;code>installPhase&lt;/code> do not perform any actions, you can exclude them from the derivation file. Additionally, the &lt;code>meta&lt;/code> section in the file should provide information about the license, maintainer, and, in this case, the main program for the derivation. During this process, I learned that &lt;code>license.gpl2&lt;/code> is deprecated in favor of &lt;code>license.gpl2Plus&lt;/code> and &lt;code>license.gpl2Only&lt;/code>.&lt;/p>
+&lt;h2 id="commit-rules">Commit Rules
+&lt;/h2>&lt;h3 id="adding-yourself-as-a-maintainer">Adding Yourself as a Maintainer
+&lt;/h3>&lt;p>If you have never committed anything to nixpkgs before, you should add yourself as a maintainer to the &lt;a class="link" href="https://github.com/NixOS/nixpkgs/blob/master/maintainers/maintainer-list.nix" target="_blank" rel="noopener"
+>maintainer-list.nix&lt;/a> file following the structure below:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-nix" data-lang="nix">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">handle&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Required&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Your name&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Optional, but at least one of email, matrix, or githubId must be given&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;address@example.org&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">matrix&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;@user:example.org&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">github&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;GithubUsername&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">githubId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">your-github-id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">keys&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fingerprint&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;AAAA BBBB CCCC DDDD EEEE FFFF 0000 1111 2222 3333&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>This addition to the maintainer-list must be in alphabetical order. The commit adding yourself to this list should adhere to the guidelines and, therefore, have a commit message like &amp;ldquo;maintainers: add mikaelfangel&amp;rdquo;. Importantly, this commit MUST precede a commit that adds the package. If the commit ordering is incorrect, use &lt;code>git rebase -i&lt;/code> to reorder the commits. Once done, use &lt;code>git push --force-with-lease&lt;/code> to push the changes.&lt;/p>
+&lt;h3 id="adding-the-package">Adding the Package
+&lt;/h3>&lt;p>When adding the package, the commit message should follow the format &amp;ldquo;package-name: init at version&amp;rdquo;. For example, &amp;ldquo;slurm: init at 0.4.4&amp;rdquo;.&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@omgitsyeshi?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Yeshi Kangrang&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/iuqxv7kFj64?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
