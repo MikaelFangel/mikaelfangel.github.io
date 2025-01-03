@@ -69,6 +69,11 @@ The evaluation for f 3 is as follows:
 
 ## 1.5
 
+The naive implementation of the solution to the problem would look like the code below.
+This solutions is however problematic because the recursion tree would expand exponentially.
+This due to the fact you call `fib (n -1) + fib (n -2)` and thus you do two recursive calls for each level
+(if you imangine it as a tree) of your fibonacci sequence.
+
 ```fsharp
 let rec fib = function
   | 0 -> 0
@@ -76,7 +81,20 @@ let rec fib = function
   | n -> fib (n - 1) + fib (n - 2)
 ```
 
-The evaluation for fib 4 is as follows:
+A better approach would be to utilize the concept of tail-recusion when solving the task, but this is unlikely the reader knows that at this point in the book.
+This would convert the recursive call into simple goto statements and thus avoid the exponetial stack growth as the previous solution.
+The new solution would the look something like this:
+
+```fsharp
+let fib n = 
+  let rec inner_fib n a b =
+    match n with
+    | 0 -> a
+    | _ -> inner_fib (n - 1) b (a + b)
+  inner_fib n 0 1
+```
+
+The evaluation for fib 4 is as follows for the naive solution:
 
 ```
 ~> fib 4 
